@@ -49,7 +49,7 @@ encoder quality 75
 	processor_init();
 	processor_start(config_get(CONFIG_KEY_RESOLUTION));
 
-	video_mode_set(10); // 1280x720 @50Hz
+	video_mode_set(13); // 720x576 @ 50.00Hz
 
 	// Set HDMI Output 0 to be pattern
 #ifdef CSR_HDMI_OUT0_BASE
