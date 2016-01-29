@@ -81,6 +81,13 @@ class _Clocking(Module, AutoCSR):
             pix_progen = Signal()
             pix_progdone = Signal()
             pix_locked = Signal()
+
+            #   i_CLKIN = 50MHz
+            #   o_CLKFX = 25MHz -> clk_pix_unbuffered
+            # o_CLKFXDV = unused
+            #    FCLKFX = FCLKIN * (CLKFX_MULTIPLY / CLKFX_DIVIDE)
+            #     25MHz =  50MHz * (2              / 4)
+            #  FCLKFXDV = FCLKFX / CLKFXDV_DIVIDE
             self.specials += Instance("DCM_CLKGEN",
                                       p_CLKFXDV_DIVIDE=2, p_CLKFX_DIVIDE=4, p_CLKFX_MD_MAX=1.0, p_CLKFX_MULTIPLY=2,
                                       p_CLKIN_PERIOD=20.0, p_SPREAD_SPECTRUM="NONE", p_STARTUP_WAIT="FALSE",

@@ -368,7 +368,7 @@ class Platform(XilinxPlatform):
           'TdiPin': 'PullNone',
           'TdoPin': 'PullNone',
           'TmsPin': 'PullNone',
-          'UnusedPin': 'PullNone',
+          'UnusedPin': 'PullDown',
           }
         for pin, config in pins.items():
             self.toolchain.bitgen_opt += " -g %s:%s " % (pin, config)
@@ -395,6 +395,7 @@ class Platform(XilinxPlatform):
         for i in range(2):
             try:
                 self.add_period_constraint(self.lookup_request("hdmi_in", i).clk_p, 12)
+                self.add_period_constraint(self.lookup_request("hdmi_in", i).clk_n, 12)
             except ConstraintError:
                 pass
 
